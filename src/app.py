@@ -8,9 +8,9 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 import json
 import nltk
-nltk.download('punkt')
 tfidf = TfidfVectorizer(max_features=1000, lowercase=True, stop_words='english')
-
+nltk.download('stopwords')
+stopwords = list(stopwords.words('english'))
 
 lemmatizer = WordNetLemmatizer()    
 
@@ -20,13 +20,14 @@ app = Flask(__name__)
 CORS(app)
 
 def preprocess(text):
+    
     text = re.sub(r'@[A-Za-z0-9_]+', '', text) 
     text = re.sub(r'#', '', text) 
     text = re.sub(r'RT[\s]+', '', text)
     text = re.sub(r'https?:\/\/\S+', '', text) 
 
     
-    tokens = word_tokenize(text)
+    tokens = text.split()
     
     tokens = [lemmatizer.lemmatize(token) for token in tokens if token not in stopwords]
 

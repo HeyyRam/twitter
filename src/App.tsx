@@ -51,17 +51,25 @@ export default function TweetSentiment() {
         </Card>
       </Grid>
       <Grid item xs={10}>
-        <Paper elevation={3} style={{marginTop:'30px', minHeight:'300px'}}>
+      <Grid container direction="row" justifyContent={'center'} style={{ paddingTop: '64px' }}>
+        <Grid item xs={10}>
+    
           <form >
-            <div style={{marginLeft:'400px'}}>
+            <div style={{marginLeft:'240px'}}>
             <input
             type="text"
             placeholder="Enter text"
            value={text}
            onChange={(e) => setText(e.target.value)}
+           style={{
+            height:'50px',
+            width:'600px',
+            marginRight:'100px',
+            textAlign:'center',
+            borderRadius:'10px'
+           }}
          />
-      <button onClick={predictSentiment}>Predict Sentiment</button>
-      {prediction && <div>Prediction: {prediction}</div>}
+      
               </div>
             <div style={{marginLeft:'550px'}}>
             
@@ -70,7 +78,34 @@ export default function TweetSentiment() {
             
           </form>
 
-        </Paper>
+        
+        </Grid>
+        <Grid item xs={10}>
+          <Paper elevation={3} style={{marginTop:'30px',height:'200px'}}>
+          <Button 
+          onClick={predictSentiment}
+          sx={{
+            marginTop:'20px',
+            marginLeft:'440px',
+            height:'45px',
+            width:'200px',
+            borderRadius:'8px',
+            backgroundColor:'#caf0f8',
+            transition:'transform 0.3s, backgroundColor 0.3s,color 0.3s',
+            '&:hover': {
+              transform: 'scale(1.05)',
+              backgroundColor:'#0077b6',
+              color:'#caf0f8'
+          }
+          }}
+          >Predict Sentiment</Button>
+          <div>
+          {prediction && <div><p>Prediction: {prediction}</p></div>}
+          </div>
+          </Paper>
+
+        </Grid>
+      </Grid>
       </Grid>
     </Grid>
       
